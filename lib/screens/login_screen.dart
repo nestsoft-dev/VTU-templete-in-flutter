@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
       body: Column(
         children: [
           SizedBox(height: 15,),
-          Text('Welcome Back to VTU-Pay',style: TextStyle(color: Colors.purple,fontSize: 30,fontWeight: FontWeight.bold),),
+          Text('Welcome Back',style: TextStyle(color: Colors.purple,fontSize: 30,fontWeight: FontWeight.bold),),
           SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.all(20),
