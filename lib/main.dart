@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vtu_flutter/screens/home.dart';
 import 'package:vtu_flutter/screens/main_page.dart';
 import 'package:vtu_flutter/screens/profile.dart';
+import 'package:vtu_flutter/screens/register.dart';
 import 'package:vtu_flutter/screens/top_up.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  MainPage(),
+      home:  Register(),
     );
   }
 }

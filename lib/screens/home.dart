@@ -5,6 +5,8 @@ import 'package:vtu_flutter/screens/top_up.dart';
 
 import '../constants/service_box.dart';
 import '../widgets/app_bar.dart';
+import 'airtime.dart';
+import 'data_purchase.dart';
 import 'history.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                  scrollDirection: Axis.horizontal,
                  itemBuilder: (BuildContext context,int index){
                    return  Container(
-                     height: 200,
+                     height: 190,
                      width: MediaQuery.of(context).size.width ,
                      margin: EdgeInsets.only(left: 20, right: 20),
                      decoration: BoxDecoration(
@@ -106,24 +108,38 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
+              SizedBox(height: 10,),
+
               //services container
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Box(
+                    GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  AirtimePurchase(),));
+                },
+                      child: Box(
+image: 'assets/phone.png',
+                        icon: Icons.network_cell,
+                        name: 'Airtime',
+                        mycolor: (0xFFbfeb91),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  DataPurchase(),));
 
-                      icon: Icons.network_cell,
-                      name: 'Airtime',
-                      mycolor: (0xFFbfeb91),
+                      },
+                      child: Box(
+                        image: 'assets/web.png',
+                        icon: Icons.web,
+                        name: 'Data', mycolor: (0xffEEAE04 ),
+                      ),
                     ),
                     Box(
-
-                      icon: Icons.web,
-                      name: 'Data', mycolor: (0xffEEAE04 ),
-                    ),
-                    Box(
+                      image: 'assets/cable.png',
                       icon: Icons.cable,
                       name: 'Cable', mycolor: (0xff07DD00 ),
                     ),
@@ -139,19 +155,22 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Box(
+                      image: 'assets/bills.png',
                       mycolor: (0xffCC00DD),
                       icon: Icons.electric_bike,
                       name: 'PayBills',
                     ),
                     Box(
+                      image: 'assets/e-pins.png',
                       mycolor: (0xff00CFCF),
                       icon: Icons.web,
                       name: 'E-pins',
                     ),
                     Box(
+                      image: 'assets/swap.png',
                       mycolor: (0xffED4B00),
                       icon: Icons.cable,
-                      name: 'Airtime \n 2Cash',
+                      name: '2Cash',
                     ),
                   ],
                 ),
