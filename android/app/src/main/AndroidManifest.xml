@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vtu.dev.vtu_flutter">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="vtu_flutter"
         android:name="${applicationName}"

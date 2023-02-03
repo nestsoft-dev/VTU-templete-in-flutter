@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vtu_flutter/screens/home.dart';
 
+import '../auth/auth_services.dart';
 import 'login_screen.dart';
 
 class Register extends StatefulWidget {
@@ -11,7 +14,10 @@ class Register extends StatefulWidget {
 
 }
 
-
+TextEditingController _username = TextEditingController();
+TextEditingController _email = TextEditingController();
+TextEditingController _password = TextEditingController();
+TextEditingController _conpassword = TextEditingController();
 
 
 class _RegisterState extends State<Register> {
@@ -52,8 +58,10 @@ class _RegisterState extends State<Register> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                            controller: _username,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
+
                                 border: OutlineInputBorder(),
                                 prefixIcon: Icon(Icons.person),
                                 label: Text('Enter Username')
@@ -66,6 +74,7 @@ class _RegisterState extends State<Register> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                            controller: _email,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -79,6 +88,7 @@ class _RegisterState extends State<Register> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                            controller: _password,
                             obscureText: true,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
@@ -94,6 +104,8 @@ class _RegisterState extends State<Register> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                            obscureText: true,
+                            controller: _conpassword,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -106,14 +118,25 @@ class _RegisterState extends State<Register> {
                         SizedBox(height: 10,),
 
                         GestureDetector(
-                          onTap: (){
-                            setState(() {
+                          onTap: () async{
+                           if (_email.text == "" || _password.text == "" || _conpassword.text == "") {
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('All field are required !'),backgroundColor: Colors.red,));
 
-                            });
+                           }  else if (_password.text != _conpassword.text) {
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Password not correct'),backgroundColor: Colors.red,));
+
+                           }  else{
+                            User? result = await AuthService().register(_email.text, _password.text);
+                            if (result != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account Created'),backgroundColor: Colors.green,));
+
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                            }
+                           }
                           },
                           child: Container(
-                            height: 60,
-                            width: 250,
+                            height: 50,
+                            width: 210,
                             decoration: BoxDecoration(
                               color: Colors.purple,
                               borderRadius: BorderRadius.circular(20)

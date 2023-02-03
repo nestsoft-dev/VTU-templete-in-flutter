@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vtu_flutter/screens/main_page.dart';
 import 'package:vtu_flutter/screens/register.dart';
+
+import '../auth/auth_services.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -8,6 +11,9 @@ class Login extends StatefulWidget {
   @override
   State<Login> createState() => _LoginState();
 }
+
+TextEditingController _email = TextEditingController();
+TextEditingController _password = TextEditingController();
 
 class _LoginState extends State<Login> {
   @override
@@ -51,6 +57,7 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        controller: _email,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -64,6 +71,7 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        controller: _password,
                         obscureText: true,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -77,8 +85,17 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 10,),
 
                     GestureDetector(
-                      onTap: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
+                      onTap: () async{
+                        if (_email.text == "" || _password.text == "") {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('All field are required !'),backgroundColor: Colors.red,));
+
+                        } else{
+                          User? result = await AuthService().login(_email.text, _password.text);
+                          if (result != null) {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
+
+                          }
+                        }
                       },
                       child: Container(
                         height: 60,

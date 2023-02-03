@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vtu_flutter/screens/home.dart';
 import 'package:vtu_flutter/screens/main_page.dart';
@@ -5,7 +6,9 @@ import 'package:vtu_flutter/screens/profile.dart';
 import 'package:vtu_flutter/screens/register.dart';
 import 'package:vtu_flutter/screens/top_up.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

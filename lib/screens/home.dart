@@ -27,6 +27,37 @@ class _HomePageState extends State<HomePage> {
     "assets/fifth",
   ];
 
+  List<String> icons = [
+    "assets/airtime",
+    "assets/data",
+    "assets/cable",
+    "assets/bills",
+    "assets/e-pin",
+  ];
+
+  List<String> names = [
+    "Airtime",
+    "Data",
+    "Cable",
+    "Bills",
+    "E-pin",
+  ];
+
+  List screens = [
+    AirtimePurchase(),
+    DataPurchase(),
+
+  ];
+
+  var current = 0;
+
+  onTap(int index){
+    setState(() {
+     current = index;
+     screens[current];
+    });
+  }
+
 
 
   @override
@@ -111,73 +142,55 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 10,),
 
               //services container
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  AirtimePurchase(),));
-                },
-                      child: Box(
-image: 'assets/phone.png',
-                        icon: Icons.network_cell,
-                        name: 'Airtime',
-                        mycolor: (0xFFbfeb91),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  DataPurchase(),));
+             Padding(padding: EdgeInsets.only(left: 15,right: 15),
+             child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+               crossAxisCount: 3,
+               crossAxisSpacing: 10,
+               mainAxisSpacing: 10,
 
-                      },
-                      child: Box(
-                        image: 'assets/web.png',
-                        icon: Icons.web,
-                        name: 'Data', mycolor: (0xffEEAE04 ),
-                      ),
-                    ),
-                    Box(
-                      image: 'assets/cable.png',
-                      icon: Icons.cable,
-                      name: 'Cable', mycolor: (0xff07DD00 ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Box(
-                      image: 'assets/bills.png',
-                      mycolor: (0xffCC00DD),
-                      icon: Icons.electric_bike,
-                      name: 'PayBills',
-                    ),
-                    Box(
-                      image: 'assets/e-pins.png',
-                      mycolor: (0xff00CFCF),
-                      icon: Icons.web,
-                      name: 'E-pins',
-                    ),
-                    Box(
-                      image: 'assets/swap.png',
-                      mycolor: (0xffED4B00),
-                      icon: Icons.cable,
-                      name: '2Cash',
-                    ),
-                  ],
-                ),
-              ),
+             ),
+                 scrollDirection: Axis.vertical,
+                 itemCount: icons.length,
+
+                 itemBuilder: (context,index){
+               return   GestureDetector(
+               onTap: (){
+                 onTap(index);
+               },
+                 child: Container(
+                   decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(20)
+                   ),
+                   child: Column(
+                     children: [
+                       Center(
+                         child: Image.asset("${icons[index]}.png",height: 50,width: 50,fit: BoxFit.cover),
+                       ),
+                       SizedBox(height: 10,),
+                       Text('${names[index]}',style: TextStyle(color: Colors.blue,fontSize: 20,fontWeight: FontWeight.bold),)
+                     ],
+                   ),
+                 ),
+               );
+                 }),)
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget myCard(){
+
+    return   GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>  AirtimePurchase(),));
+      },
+      child: Box(
+        image: 'assets/phone.png',
+        icon: Icons.network_cell,
+        name: 'Airtime',
+        mycolor: (0xFFbfeb91),
       ),
     );
   }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11692567153",
+    "project_id": "flutter-vtu",
+    "storage_bucket": "flutter-vtu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11692567153:android:f4954473007f88135449d0",
+        "android_client_info": {
+          "package_name": "com.vtu.dev.vtu_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11692567153-b7n5v3edknigblomc59bktta28gp1c91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXTVHZZltPjrOuhT_lVWIqDaJv_7DPJG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11692567153-b7n5v3edknigblomc59bktta28gp1c91.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
